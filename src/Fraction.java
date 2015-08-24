@@ -7,7 +7,7 @@
  * 
  * @author Allison
  * created: 8/18/15
- * last modified: 
+ * last modified: 8/23/15 
  */
 
 public class Fraction {
@@ -26,7 +26,7 @@ public class Fraction {
 		this.denominator = d;
 	}
 	
-// methods
+    // methods
 	
 	/** get methods
 	 * should be immutable so no set methods
@@ -41,14 +41,15 @@ public class Fraction {
 		return this.denominator;
 	}
 	
-	// reduce (private?? return type??)
-	/** first using Euclid's algorithm to find GCD
+	/** 
+	 * findGcd method calculates greatest common denominator between the numerator and denominator
+	 * uses Euclid's algorithm to find GCD
 	 * @param numerator 
 	 * @param denominator
-	 * @return a fraction in lowest terms
+	 * @return a Fraction object in lowest terms
 	 */
 	
-	// needs editing
+	//private?
 	public int findGcd(int n, int d) {
 		// variables necessary?
 		int num1 = n;
@@ -62,48 +63,107 @@ public class Fraction {
 		return num1;
 	}
 	
+	/**
+	 * reduce method reduces the Fraction into lowest terms using the findGcd method
+	 * @return a Fraction object in lowest terms
+	 */
 	public Fraction reduce() {
 		int gcd = findGcd(this);
 		
 		int n = this.numerator/gcd;
 		int d = this.denominator/gcd;
 		
-		Fraction f = new Fration(n,d);
+		Fraction f = new Fraction(n,d);
 		return f;
 	}
 	
+	/**
+	 * getReciprocal method
+	 * returns reciprocal of fraction
+	 * @return Fraction object with denominator and numerator switched
+	 */
+	
+	public Fraction getReciprocal() {
+		return new Fraction(denominator, numerator);
+	}
+	
 	// basic operations for 2 fractions
+	
+	/**
+	 * add method finds the sum of two fractions 
+	 * @param f2 second fraction being added
+	 * @return the sum of two fractions in lowest terms
+	 */
+	
 	public Fraction add(Fraction f2) {
 		Fraction sum = new Fraction();
-		sum.numerator = this.numerator*f2.denominator;
-		sum.denominator = this.denominator*f2.denominator;
+		
+		//cross multiply
+		this.numerator *= f2.getDenominator();
+		this.denominator *= f2.getDenominator();
+		f2.getDenominator() *= this.denominator;
+		f2.getNumerator() *= this.denominator;
+		
+		sum.numerator = this.numerator+f2.getNumerator();
+		sum.denominator = this.denominator*f2.getDenominator();
 		
 		sum.reduce();
 		return sum;
+		*/
 	}
+	
+	/**
+	 * subtract method finds the difference between two fractions
+	 * @param f2 second method being subtracted to or from
+	 * @return the difference between two fractions in lowest terms
+	 */
 	
 	public Fraction subtract(Fraction f2) {
 		Fraction difference = new Fraction();
-		difference.numerator = this.numerator*f2.denominator;
-		difference.denominator = this.denominator*f2.denominator;
+		
+		this.numerator *= f2.getDenominator();
+		this.denominator *= f2.getDenominator();
+		f2.getDenominator() *= this.denominator;
+		f2.getNumerator() *= this.denominator;
+		
+		difference.numerator = this.numerator - f2.getNumerator();
+		difference.denominator = this.denominator + f2.getDenominator();
 		
 		difference.reduce();
 		return difference;
 	}
 	
+	/**
+	 * multiply method finds the product of two fractions
+	 * @param f2 second fraction being multiplied
+	 * @return the product of two fractions in lowest terms
+	 */
+	
 	public Fraction multiply(Fraction f2) {
-		int newNum = this.getNumerator()*f2.getNumerator();
-		int newDenom = this.getDenominator()*f2.getDenominator();
+		Fraction product = new Fraction();
+		product.numerator = this.numerator*f2.getNumerator();
+		product.denominator = this.denominator*f2.getDenominator();
 		
-		Fraction f5 = new Fraction(n3, d3);
-		return f5;
+		product.reduce();
+		return product;
 	}
 	
+	/**
+	 * divide method finds the quotient of two fractions
+	 * @param f2 second fraction being divided
+	 * @return the quotient of two fractions in lowest terms
+	 */
 	public Fraction divide(Fraction f2) {
+		Fraction quotient = new Fraction();
+		Fraction f2Reciprocal = new Fraction();
+		f2Reciprocal = f2.getReciprocal();
 		
+		quotient.numerator = this.numerator*f2Reciprocal.getDenominator();
+		quotient.denominator = this.denominator*f2Reciprocal.getNumerator();
+		
+		quotient.reduce();
+		return quotient;
 	}
-	
-	// find reciprocal
 	
 	/**
 	 * equals method
@@ -111,6 +171,7 @@ public class Fraction {
 	 * @param f2 other fraction
 	 * @return true if both fractions are equal
 	 */
+	
 	public boolean equals(Fraction f2) {
 		return (this.numerator==f2.numerator) && (this.denominator==f2.denominator);
 	}
