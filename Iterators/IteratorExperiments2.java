@@ -25,8 +25,16 @@ public class IteratorExperiments2 {
 	public static double average(List<Integer> list) {
 		double total = 0;
 
-		for (int i = 0; i < list.size(); i++) {
-			total += list.get(i) / (double)list.size();
+		Iterator<Integer> iterator = list.iterator();
+
+		/*
+		while (has more elements....) {
+			total += ??? / (double)list.size();
+		}
+		 */
+
+		while (iterator.hasNext()) {
+			total += iterator.next() / (double) list.size();
 		}
 
 		// returns an average
