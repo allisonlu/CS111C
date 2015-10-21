@@ -1,0 +1,1 @@
+I'm getting more used to writing simple arrays and linkedlists thanks to taking notes on my laptop. I wasn't sure on how to complete the main method. I was debating whether to write separate methods for each of steps, but I ran out of time. Lists seem fairly simple.

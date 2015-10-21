@@ -26,6 +26,7 @@ public class IteratorExperiments {
 		double total = 0;
 
 		Iterator<Integer> iterator = list.iterator();
+		// this is an object that implements both List and Iterator interfaces
 
 		/*
 		while (has more elements....) {

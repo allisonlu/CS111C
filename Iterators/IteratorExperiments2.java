@@ -9,9 +9,9 @@ public class IteratorExperiments2 {
 
 	public static void main(String[] args) {
 
-		List<Integer> list = new LinkedList<Integer>();
+		SimpleLinkedIntList list = new SimpleLinkedIntList();
 
-		fillList(list, 1000000);
+		fillList(list, 1000);
 
 		// grabs clock time
 		long startTime = (new Date()).getTime();
@@ -22,18 +22,12 @@ public class IteratorExperiments2 {
 		System.out.println("milliseconds: " + (endTime-startTime));
 	}
 
-	public static double average(List<Integer> list) {
+	public static double average(SimpleLinkedIntList list) {
 		double total = 0;
 
-		Iterator<Integer> iterator = list.iterator();
+		SimpleIntIterator iterator = list.iterator();
 
-		/*
-		while (has more elements....) {
-			total += ??? / (double)list.size();
-		}
-		 */
-
-		while (iterator.hasNext()) {
+		while(iterator.hasNext()) {
 			total += iterator.next() / (double) list.size();
 		}
 
@@ -41,7 +35,7 @@ public class IteratorExperiments2 {
 		return total;
 	}
 
-	public static void fillList(List<Integer> list, int count) {
+	public static void fillList(SimpleLinkedIntList list, int count) {
 		for (int i = 0; i < count; i++) {
 			list.add((int)(Math.random() * 1000));
 		}

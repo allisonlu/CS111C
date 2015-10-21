@@ -12,6 +12,11 @@ public class SimpleLinkedIntList {
 		size = 0;
 	}
 
+	public SimpleLinkedIntList iterator() {
+		// creates a new object, which "answers questions on behalf of list"
+		return new MyIterator();
+	}
+
 	public void add(int value) {
 		Node newNode = new Node();
 		newNode.data = value;
@@ -48,4 +53,28 @@ public class SimpleLinkedIntList {
 		public Node next;
 		public int data;
 	}
+
+	/*
+	 * MyIterator private class
+	 * internal data type
+	 */
+	private class MyIterator implements SimpleIntIterator {
+		private Node current;
+
+		public MyIterator() {
+			current = first;
+		}
+
+		public boolean hasNext() {
+			return current != last;
+		}
+
+		public int next() {
+			int nextValue = current.data;
+			current = current.next;
+
+			return nextValue;
+		}
+	}
+
 }
