@@ -8,8 +8,11 @@ public class Circle extends AbstractShape {
 
 	// Java automatically invokes an inherited constructor
 	public Circle() {
-		super();
 		radius = 0;
+	}
+
+	public Circle(double r) {
+		this(0, 0, r);
 	}
 
 	public double getArea() {

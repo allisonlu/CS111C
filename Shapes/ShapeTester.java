@@ -18,8 +18,6 @@ public class ShapeTester {
 			list.add(new Rectangle(0, 0, (Math.random()*10), (Math.random()*10)));
 		}
 
-		Date end = new Date();
-
 		double totalArea = 0;
 
 		Iterator<ShapeInterface> iterator = list.iterator();
@@ -27,6 +25,8 @@ public class ShapeTester {
 		while(iterator.hasNext()) {
 			totalArea += iterator.next().getArea();
 		}
+
+		Date end = new Date();
 
 		System.out.println("Total Area: " + totalArea + " units");
 		System.out.println("Total Time: " + (end.getTime() - start.getTime()) + " milliseconds");
