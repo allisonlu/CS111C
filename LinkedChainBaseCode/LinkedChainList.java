@@ -29,6 +29,12 @@ public class LinkedChainList<T> extends LinkedChainBase<T> implements ListInterf
         // set new node's data to newEntry
         Node newNode = new Node();
         newNode.data = newEntry;
+        Node currentNode = getFirstNode();
+
+        while(currentNode.getNextNode() != null) {
+            currentNode = currentNode.getNextNode();
+        }
+        addAfterNode(currentNode, newNode)
 
         // if list is empty, set first and last node to newNode
         // update size to 1
@@ -44,19 +50,52 @@ public class LinkedChainList<T> extends LinkedChainBase<T> implements ListInterf
 
             // if adding to index 1, set next node to first
             // otherwise
+
+            Node newNode = new Node(newEntry);
+            Node currentNode = getFirstNode();
+
+            for(int i = 0; i < givenPosition; i++) {
+                currentNode = currentNode.getNextNode();
+            }
+            addAfterNode(currentNode, newNode);
         }
         else
-            throw new IndexOutOfBoundsException("index: " + newPosition);
+            throw new IndexOutOfBoundsException("Index: " + newPosition + " out of bounds");
     }
 
     // Stub
     public T replace(int givenPosition, T newEntry) {
-        return null;
+        if (givenPosition < 1 || givenPosition > getLength()) {
+            throw new IndexOutOfBoundsException("Index " + givenPosition + " out of bounds");
+        }
+        else {
+            Node newNode = new Node(newEntry);
+            Node currentNode = getFirstNode();
+
+            for(int i = 0; i < givenPosition; i++) {
+                currentNode = currentNode.getNextNode();
+            }
+
+            T temp = removeAfterNode(currentNode);
+            addAfterNode(currentNode, newNode);
+            return temp;
+        }
+
     }
 
     // Stub
     public T getEntry(int givenPosition) {
-        return null;
+        if (givenPosition < 1 or givenPosition > getLength()) {
+            throw new IndexOutOfBoundsException("Index " + givenPosition+ " out of bounds");
+        }
+        else {
+            Node currentNode = getFirstNode();
+
+            for (int i = 0; i < givenPosition; i++) {
+                currentNode = currentNode.getNextNode();
+            }
+            return currentNode.getData();
+        }
     }
 
     //Stub
