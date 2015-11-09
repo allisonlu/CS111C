@@ -3,6 +3,8 @@
  */
 public class LinkedChainList<T> extends LinkedChainBase<T> implements ListInterface<T> {
 
+    private int size = 0;
+
     public LinkedChainList() {
         super();
     }
@@ -27,14 +29,13 @@ public class LinkedChainList<T> extends LinkedChainBase<T> implements ListInterf
     public void add(T newEntry) {
         // create newNode
         // set new node's data to newEntry
-        Node newNode = new Node();
-        newNode.data = newEntry;
+        Node newNode = new Node(newEntry);
         Node currentNode = getFirstNode();
 
         while(currentNode.getNextNode() != null) {
             currentNode = currentNode.getNextNode();
         }
-        addAfterNode(currentNode, newNode)
+        addAfterNode(currentNode, newNode);
 
         // if list is empty, set first and last node to newNode
         // update size to 1
@@ -54,7 +55,7 @@ public class LinkedChainList<T> extends LinkedChainBase<T> implements ListInterf
             Node newNode = new Node(newEntry);
             Node currentNode = getFirstNode();
 
-            for(int i = 0; i < givenPosition; i++) {
+            for(int i = 0; i < newPosition; i++) {
                 currentNode = currentNode.getNextNode();
             }
             addAfterNode(currentNode, newNode);
@@ -85,7 +86,7 @@ public class LinkedChainList<T> extends LinkedChainBase<T> implements ListInterf
 
     // Stub
     public T getEntry(int givenPosition) {
-        if (givenPosition < 1 or givenPosition > getLength()) {
+        if (givenPosition < 1 || givenPosition > getLength()) {
             throw new IndexOutOfBoundsException("Index " + givenPosition+ " out of bounds");
         }
         else {

@@ -129,7 +129,7 @@ public abstract class LinkedChainBase<T> {
             next = null;
         }
 
-        private Node(T dataPortion, Node nextNode) {
+        protected Node(T dataPortion, Node nextNode) {
             data = dataPortion;
             next = nextNode;
         }
