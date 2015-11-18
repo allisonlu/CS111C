@@ -1,0 +1,53 @@
+11/9 Homework: 2, 3, 4 (in pseudo code), 6, 7, 10
+
+2. What is the height of the shortest binary tree that contains 21 nodes? Is this tree full? Balanced?
+	height = floor(log2(21) + 1)
+	=> h = floor(5.39) = 5
+This tree is not full.
+The tree is balanced because every leaf is the same distance away from the root as every other leaf.
+
+3. Consider a binary tree that has three levels.
+What is the maximum number of nodes in this tree?
+2^3 - 1 = 7 nodes.
+What is the maximum number of leaves in this tree?
+4 leaves.
+
+Answer the previous two questions for a binary tree that has 10 levels
+2^10 - 1 = 1023 nodes.
+
+(max nodes for 10 levels) - (max nodes for 9 levels)
+		= (2^10 - 1) - (2^9 - 1)
+		= 1023 - 511
+		= 512 leaves.
+
+
+4. Write a recursive algorithm that counts the nodes in a binary tree.
+
+int getNodes(T currentNode) {
+	if currentNode is null
+		return 0;
+	return 1 + getNodes(rightChild) + getNodes(leftChild)
+}
+
+6. Consider a traversal of a binary tree. Suppose that visiting a node means to simply display the data in the node. What are the results of each of the following traversals of the tree (a)?
+Preorder
+6 4 2 1 3 5 8 7 9 10 11
+Postorder
+1 3 2 5 4 9 7 11 10 8 6
+Inorder
+1 2 3 4 5 6 9 7 8 10 11
+Level Order
+6 4 8 2 5 7 10 1 3 9 11
+
+7. Repeat Exercise 6, but instead traverse the tree (b).
+Preorder
+11 8 3 2 1 5 4 6 9 10 7
+Postorder
+2 1 3 4 6 5 8 9 7 10 11
+Inorder
+2 3 1 8 5 4 6 11 10 9 7
+Level Order
+11 8 10 3 5 9 7 2 1 4 6
+
+10. Suppose we know that the preorder traversal of a binary search tree is 6, 2, 1, 4, 3, 7, 10, 9, 11. What is the postorder traversal of the tree?
+1 3 4 2 9 11 10 7 6
